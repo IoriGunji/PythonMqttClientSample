@@ -10,8 +10,8 @@ mqtt_config = {
     , 'port': 1883
     , 'topic': '/vantiq/ig/cinnamoroll'
     , 'client_id': f'python-mqtt-{random.randint(0, 100)}'
-    , 'username': 'iori'
-    , 'password': 'password01234'
+    , 'username': ''
+    , 'password': ''
 }
 
 publish_config = {
@@ -64,12 +64,13 @@ def publish(client):
     while True:
         time.sleep(publish_config['interval'])
         msg = publish_config['message'][random.randint(0, msg_length - 1)]
+        msg['time'] = dt.now().strftime('%Y-%m-%d %H:%M:%S')
         result = client.publish(mqtt_config['topic'], json.dumps(msg, ensure_ascii=False, indent=4))
         status = result[0]
         if status == 0:
             print(f"Topic: {mqtt_config['topic']}")
             print(f"{msg}")
-            print(f"Published Time: {dt.now()}")
+            print(f"Published Time: {msg['time']}")
             print()
         else:
             print(f"Failed to send message to topic {mqtt_config['topic']}")

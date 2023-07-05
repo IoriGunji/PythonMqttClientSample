@@ -8,8 +8,8 @@ mqtt_config = {
     , 'port': 1883
     , 'topic': '/vantiq/ig/cinnamoroll'
     , 'client_id': f'python-mqtt-{random.randint(0, 100)}'
-    , 'username': 'iori'
-    , 'password': 'password01234'
+    , 'username': ''
+    , 'password': ''
 }
 
 
